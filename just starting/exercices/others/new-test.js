@@ -1,0 +1,1 @@
+console.log("Este foi um teste feito para treinar o uso do comando 'cat' no linux, porém ao mesmo tempo aproveitei para treinar um pouco de comandos de JS usando o Node.js. Ou seja estou tentando praticar usar cada vez mais o terminal do linux mint.")
