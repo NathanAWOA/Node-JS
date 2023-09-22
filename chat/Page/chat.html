@@ -11,8 +11,9 @@
     <!--AJAX AND SOCKET.IO-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
 
-    <!--MAIN SCRIPT-->
-    
+    <!--MAIN SCRIPT
+    <script type="module" src="/chat/Script/main.js"></script>
+    -->
 
     <style>
         body{
@@ -76,7 +77,6 @@
     </style>
 </head>
 <body>
-    <h1>Teste</h1>
     <div id="chat-window">
         <div class="titulo"> 
             <span>Chat</span>
@@ -84,23 +84,12 @@
         <div id="chat-messages"></div>
         <div class="container">
             <textarea name="msg-input" id="message-input" cols="" rows="" placeholder="Digite sua mensagem"></textarea>
-            <button id="send-button" type="submit">></button>
+            <button id="send-button">></button>
         </div>
       </div>
       
     <script>
         const socket = io('http://localhost:8081/')
-
-        const msg = document.querySelector("#message-input")
-        const btn = document.querySelector("#send-button")
-        const msgArea = document.querySelector("#chat-message")
-        console.log(msg, btn)
-
-        btn.addEventListener("click", () => {
-            
-            arrayMsg = [msg.value.toString()]
-            console.log(arrayMsg)
-        })
         
     </script>
 </body>
