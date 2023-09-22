@@ -1,0 +1,9 @@
+Para criar um json:
+
+abra o terminal e insira o seguinte comando{
+    "npm init -y"
+}
+
+Parece que para instalar o Socket.io se usa o comando {
+    "npm i socket.io"
+}
