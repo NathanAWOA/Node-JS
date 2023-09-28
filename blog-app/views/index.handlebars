@@ -1,19 +1,31 @@
-<div class="jumbotron">
-  <h1 class="display-4">Bem-vindo ao blog em node!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Crie uma conta</a>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">Bem-vindo ao blog em node!</h1>
+      <p class="lead">Este foi um site feito com o intuito de estudar sobre Node.js, mas também contém um pouco de Express, MongoDB, Bootstrap, Sequelize e etc.</p>
+      <hr class="my-4">
+      <p>Por mais que o intuito inicial fosse estudar Node.js acabei tendo que usar e estudar mesmo que um pouco, varias outras ferramentas. De qualquer forma, mesmo que aos trancos e barrancos eu consegui terminar esse estudo e ouso dizer que acabei gostando muito de todo esse processo.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Crie uma conta</a>
+       </p>
+  </div>
 </div>
-<h2>Postagens recentes:</h2>
+<hr>
+<h2 class="mt-4">Postagens recentes:</h2>
 
-{{#each}}
-<div class="card">
-    <div class="card-body">
-        <h3>{{titulo}}</h3>
-        <p>{{descricao}}</p>
+{{#each postagens}}
+    <div class="card">
+        <div class="card-body">
+            <h3>{{titulo}}</h3>
+            <h6>{{descricao}}</h6>
+            <p>{{conteudo}}</p>
+            <a href="/postagem/{{slug}}">
+                <button class="btn btn-success">Leia mais</button>
+            </a>
+            <hr>
+            <small>Categoria: {{categoria.nome}}</small> <br>
+            <small>Data de publicação: {{data}}</small>
+        </div>
     </div>
-</div>
 {{else}}
     <h5>Nenhuma postagem</h5>
 {{/each}}

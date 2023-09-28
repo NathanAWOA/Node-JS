@@ -10,6 +10,8 @@
     const flash = require('connect-flash')
     require('./models/Postagem')
     const Postagem = mongoose.model('postagens')
+    require("./models/Categoria")
+    const Categoria = mongoose.model('categorias')
     
 //CONFIG
     //SESSÃO
@@ -66,12 +68,52 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/postagem/:slug', (req, res) => {
+    Postagem.findOne({slug: req.params.slug}).then((postagem) => {
+        if(postagem) {
+            res.render('postagem/index', {postagem: postagem})
+        }else {
+            req.flash("error_msg", "Essa postagem não existe")
+            res.redirect("/")
+        }
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro interno")
+        res.redirect("/")
+    })
+})
+
 app.get('/404', (req, res) => {
     res.send("Erro 404!")
 })
 
-app.get('/posts', (req, res) => {
-    res.send(`Posts`)
+app.get('/categorias', (req, res) => {
+    Categoria.find().then((categorias) => {
+        res.render('categorias/index', {categorias: categorias})
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro interno")
+        res.redirect("/")
+    })
+})
+
+app.get('/categorias/:slug', (req, res) => {
+    Categoria.findOne({slug: req.params.slug}).then((categoria) => {
+        if(categoria){
+            Postagem.find({categoria: categoria.id}).then((postagens) => {
+                
+                res.render('categorias/postagens', {postagens: postagens, categoria: categoria})
+
+            }).catch((err) => {
+                req.flash("error_msg", "Houve um erro ao listar os posts!")
+                res.redirect("/")
+            })
+        } else {
+            req.flash("error_msg", "Essa categoria não existe")
+            res.redirect("/")
+        }
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro interno")
+        res.redirect("/")
+    })
 })
 
 app.use('/admin', admin)
