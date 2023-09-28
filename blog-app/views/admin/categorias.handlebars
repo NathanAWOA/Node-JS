@@ -10,9 +10,12 @@
             <small>Data de criação: {{date}}</small> <br>
             <a href="/admin/categorias/edit/{{id}}">
             <button class="btn btn-success mt-4">Editar categoria</button>
+            </a> <br>
+            <a href="/admin/categorias/deletar/{{id}}">
+            <button class="btn btn-danger mt-2">Deletar categoria</button>
             </a>
         </div>
     </div>
 {{else}}
-
+    <h4 class="mt-3">Nenhuma categoria registrada!</h4>
 {{/each}}
