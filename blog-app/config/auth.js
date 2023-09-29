@@ -6,18 +6,17 @@ const bcrypt = require('bcryptjs')
 require('../models/Usuario')
 const Usuario = mongoose.model('usuarios')
 
-
 module.exports = function(passport) {
     passport.use(new localStrategy({usernameField: 'email', passwordField: 'senha'}, (email, senha, done) => {
 
-        Usuario.findOne({email: email}).then((usuario) => {
-            if(!usuario) {
+        Usuario.findOne({email: email}).then((usuarios) => {
+            if(!usuarios) {
                 return done(null, false, {message: "Esta conta não existe"})
             }
 
-            bcrypt.compare(senha, usuario.senha, (erro, batem) => {
+            bcrypt.compare(senha, usuarios.senha, (erro, batem) => {
                 if(batem){
-                    return done(null, usuario)
+                    return done(null, usuarios)
                 }else {
                     return done(null, false, {message: "Senha incorreta"})
                 }
@@ -28,15 +27,28 @@ module.exports = function(passport) {
 
     }))
 
-    passport.serializeUser((usuario, done) => {
+    passport.serializeUser((usuarios, done) => {
 
-        done(null, usuario.id)
+        done(null, usuarios.id)
 
     })
 
-    passport.deserializeUser((id, done) => {
-        const teste = Usuario.findById(id, (err, usuario) => {
-            done(err, usuario)
+    passport.deserializeUser((id,done)=>{
+        Usuario.findById(id).then((usuario)=>{
+            done(null,usuario)
+        }).catch((err)=>{
+             done (null,false,{message:'algo deu errado'})
         })
-    })
+        })
+
+    /*  Mongoose descontinuo as callbacks
+        agora é só com try/catch, async/await e promises
+
+
+        passport.deserializeUser((id, done) => {
+            Usuario.findById(id, (err, usuarios) => {
+                done(err, usuarios)
+            })
+        })
+    */
 }

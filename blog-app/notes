@@ -1,2 +1,3 @@
 passportjs é uma ferramenta para autenticação que pode ser usada para autenticar emails e senhas de usuarios na hora de fazer login.
 Não sei bem o porquer porém o site passportjs.org não ta funcionando, talvez os servidores estejam em manutenção ou algo do tipo, tenho que pesquisar melhor depois. Ou talvez eu descubra o porque disso no decorrer dos proximos passos do projeto blog-app.
+O mongoose aparentemente descontinuou as callbacks e não funfa mais. Então se aparecer um "MongooseError: blablabla no longer accepts a callback" saiba que tu vai ter que mudar de callback para um async/ await, try/ catch ou algo do genero.
