@@ -1,3 +1,37 @@
 passportjs é uma ferramenta para autenticação que pode ser usada para autenticar emails e senhas de usuarios na hora de fazer login.
 Não sei bem o porquer porém o site passportjs.org não ta funcionando, talvez os servidores estejam em manutenção ou algo do tipo, tenho que pesquisar melhor depois. Ou talvez eu descubra o porque disso no decorrer dos proximos passos do projeto blog-app.
 O mongoose aparentemente descontinuou as callbacks e não funfa mais. Então se aparecer um "MongooseError: blablabla no longer accepts a callback" saiba que tu vai ter que mudar de callback para um async/ await, try/ catch ou algo do genero.
+MLAB é um site gratuito (ou pelo menos era gratuito), para ter um servidor MongoDB. Mas não achei o site, quando tento ir vai pro site da mongodb mesmo.
+Para subir para a heroku teria que usar o git, ai teriamos que fazer o classico .gitignore. Dentro dele você passa coisas como por exemplo o node_modules que pode variar de pc para pc então é bom deixar ele lá então você vai ter que fazer alguns comandos em git dentro da pasta do projeto la no terminal, e os comandos seram como os que vou por aqui em baixo:
+    
+    git init = inicia o repo git
+
+    git add . = add os arquivos e pastas do seu projeto (menos o que estava dentro do gitignore)
+
+    git commit -am 'initial commit' = finaliza o pacote para poder enviar ele (no caso usei aspas simples mas deveria ser aspas duplas)
+
+Feito isso a gente vai ir atras do Heroku CLI que é uma ferramenta da Heroku para subir seus projetos para nuvem. Tem pra basicamente todos os SO populares. Lembrando que tem que ter uma conta na Heroku.
+
+Depois voltamos para o terminal la na pasta do seu projeto. usamos então o comando:
+
+    heroku login
+
+Em seguida
+
+    heroku create
+
+O proprio terminal ira te mostrar o link para o seu projeto na heroku, então la na heroku nós vamos pegar o comando que vai ser mais ou menos assim:
+
+    git:remote -a 'nome do projeto na heroku'
+
+A seguir usaremos o seguinte comando:
+
+    git push heroku master = publica o projeto na heroku
+
+E então podemos usar o comando:
+
+    heroku open = abre o seu projeto no navegador
+
+Caso tudo estaja certo o site ira abrir e estara funcionando normalmente.
+
+De qualquer forma, não manjo de git nem de herokum mas definitivamente vou estudar sobre ambos logo logo. No mais por enquanto é isso, a playlist que vim acompanhando enquanto fazia esse projeto chegou ao fim e agora vou ter que sair para desbravar esse mundão do Node.js por contra própria, veremos do que serei capaz.

@@ -47,7 +47,13 @@ router.post('/registro', (req, res) => {
                 const novoUsuario = new Usuario({
                     nome: req.body.nome,
                     email: req.body.email,
-                    senha: req.body.senha
+                    senha: req.body.senha,
+                    
+                    /*
+                    precisaria fazer o eAdmin passar a ter o valor de um para que alguem pudesse acessar a parte de adm, mas ainda teria que ver a melhor forma de implementar isso
+
+                    eAdmin: 1
+                    */
                 })
 
                 bcrypt.genSalt(10,(erro, salt) => {
@@ -93,5 +99,21 @@ router.post('/login' , (req, res, next) => {
     })(req, res, next)
 
 })
+/*
+router.get('/logout', (req, res) => {
+    req.logOut()
+    req.flash("success_msg", "Deslogado com sucesso!")
+    res.redirect('/')
+})
+*/
+
+router.get('/logout', function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.flash("success_msg", "Deslogado com sucesso!")
+      res.redirect('/');
+    });
+  });
+
 
 module.exports = router

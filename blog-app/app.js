@@ -32,6 +32,8 @@
             //GUARDA AS MENSAGENS DE SUCESSO/ FALHA
             res.locals.success_msg = req.flash('success_msg')
             res.locals.error_msg = req.flash('error_msg')
+            res.locals.error = req.flash("error")
+            res.locals.user = req.user || null
 
             //NEXT É PARA NÃO FICAR PRESO NO MIDDLEWARE
             next()
@@ -125,7 +127,9 @@ app.use('/admin', admin)
 app.use('/usuarios', usuarios)
 
 //OTHERS
-const PORT = 8084
+/*o process.env.PORT serve para se conectar com outra porta que nós podemos estar usando de algum serviço como por exemplo a Heroku*/
+
+const PORT = process.env.PORT || 8084
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:8084`)
 })
